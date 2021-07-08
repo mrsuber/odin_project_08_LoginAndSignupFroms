@@ -9,6 +9,9 @@ let database  ={
   formRowName3:'Dropdown',
   formRowInput3:['Option One','Option Two','Option Three','Option Four'],
   formRowName4:'Textarea',
+  formRowName5:'Radio',
+  radio:['Radio option 1','Radio option 2','Radio option 3'],
+  submitButton:'Submit Form'
 
 }
 
@@ -91,6 +94,7 @@ mainContent.classList.add('main-content')
 const forms = document.createElement('form')
 forms.classList.add('form-basic')
 const formTitle = document.createElement('div')
+formTitle.classList.add('form-title-row')
 const formTitleHeading = document.createElement('h1')
 formTitleHeading.innerText = database.form1TitleHeading
 
@@ -135,37 +139,102 @@ const formRowInput4 = document.createElement('textarea')
 
 formRowInput4.name = 'textarea'
 
+const formRow5 = document.createElement('div')
+formRow5.classList.add('form-row')
+const fromRowLabel5 = document.createElement('label')
+const fromRowName5 = document.createElement('span')
+fromRowName5.innerText = database.formRowName5
+const radioButtonDiv=document.createElement('div')
+radioButtonDiv.classList.add('form-radio-buttons')
+const radioButtonDivIner = document.createElement('div')
+const radioButtonDivLabel = document.createElement('label')
+const radioButtonDivInput = document.createElement('input')
+radioButtonDivInput.type = 'radio'
+radioButtonDivInput.name = 'radio'
+const radioButtonDivSpan = document.createElement('span')
+radioButtonDivSpan.innerText = database.radio[0];
 
 
 
+const radioButtonDivIner2 = document.createElement('div')
+const radioButtonDivLabel2 = document.createElement('label')
+const radioButtonDivInput2 = document.createElement('input')
+radioButtonDivInput2.type = 'radio'
+radioButtonDivInput2.name = 'radio'
+const radioButtonDivSpan2 = document.createElement('span')
+radioButtonDivSpan2.innerText = database.radio[1];
+
+
+
+const radioButtonDivIner3 = document.createElement('div')
+const radioButtonDivLabel3 = document.createElement('label')
+const radioButtonDivInput3 = document.createElement('input')
+radioButtonDivInput3.type = 'radio'
+radioButtonDivInput3.name = 'radio'
+const radioButtonDivSpan3 = document.createElement('span')
+radioButtonDivSpan3.innerText = database.radio[2];
+
+
+const formRow6 = document.createElement('div')
+formRow6.classList.add('form-row')
+const formRowButton6 = document.createElement('button')
+formRowButton6.type = 'submit'
+formRowButton6.innerText = database.submitButton
 
 body.appendChild(mainContent)
 mainContent.appendChild(forms)
 
-form.appendChild(formTitle)
+forms.appendChild(formTitle)
 formTitle.appendChild(formTitleHeading)
 
-form.appendChild(formRow)
+forms.appendChild(formRow)
 formRow.appendChild(fromRowLabel)
 fromRowLabel.appendChild(fromRowName)
 fromRowLabel.appendChild(formRowInput)
 
-form.appendChild(formRow2)
+forms.appendChild(formRow2)
 formRow2.appendChild(fromRowLabel2)
 fromRowLabel2.appendChild(fromRowName2)
 fromRowLabel2.appendChild(formRowInput2)
 
 
-form.appendChild(formRow3)
+forms.appendChild(formRow3)
 formRow3.appendChild(fromRowLabel3)
 fromRowLabel3.appendChild(fromRowName3)
 fromRowLabel3.appendChild(formRowInput3)
 for(let i=0;i<database.formRowInput3.length;i++){
-   formRowInput3.appendChild(document.createElement('option').innerText=database.formRowInput3[i])
+const test = document.createElement('option')
+test.innerText=database.formRowInput3[i]
+formRowInput3.appendChild(test)
 }
 
 
-form.appendChild(formRow4)
+
+forms.appendChild(formRow4)
 formRow4.appendChild(fromRowLabel4)
 fromRowLabel4.appendChild(fromRowName4)
 fromRowLabel4.appendChild(formRowInput4)
+
+
+forms.appendChild(formRow5)
+formRow5.appendChild(fromRowLabel5)
+fromRowLabel5.appendChild(fromRowName5)
+formRow5.appendChild(radioButtonDiv)
+radioButtonDiv.appendChild(radioButtonDivIner)
+radioButtonDivIner.appendChild(radioButtonDivLabel)
+radioButtonDivLabel.appendChild(radioButtonDivInput)
+radioButtonDivLabel.appendChild(radioButtonDivSpan)
+
+
+radioButtonDiv.appendChild(radioButtonDivIner2)
+radioButtonDivIner2.appendChild(radioButtonDivLabel2)
+radioButtonDivLabel2.appendChild(radioButtonDivInput2)
+radioButtonDivLabel2.appendChild(radioButtonDivSpan2)
+
+radioButtonDiv.appendChild(radioButtonDivIner3)
+radioButtonDivIner3.appendChild(radioButtonDivLabel3)
+radioButtonDivLabel3.appendChild(radioButtonDivInput3)
+radioButtonDivLabel3.appendChild(radioButtonDivSpan3)
+
+forms.appendChild(formRow6)
+formRow6.appendChild(formRowButton6)
