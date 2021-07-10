@@ -263,13 +263,14 @@ let database  ={
 }
 // querrselectors
 const titleHead = document.querySelector('head');
-const body = document.querySelector('body')
+const body = document.querySelector('body');
+
 function clearElement(element){
-  // while(element.firstChild){
-  //   element.removeChild(element.firstChild)
-  // }
-  element.remove()
+  element.remove();
 }
+
+
+
 function pageLoading(){
   const title = document.createElement('title');
   const stylelink1 = document.createElement('link')
@@ -355,6 +356,138 @@ function pageLoading(){
 
 }
 
+function showSuccess(input){
+  // get the form-field element
+  const formField = input.parentElement;
+
+  // remove the error class
+  formField.classList.remove('error');
+  formField.classList.add('success');
+
+  // hide the error message
+  const error = formField.querySelector('small');
+  error.textContent = '';
+}
+function isRequired(value){
+  if(value===''){
+    return false
+  }else return true;
+}
+function isBetween(length,min,max){
+  if (length<min || length >max ){
+    return false;
+  }else return true;
+
+}
+function showError(input,message){
+  // get the form-field element
+  const formField = input.parentElement;
+  // add the error class
+  formField.classList.remove('success');
+  formField.classList.add('error');
+
+
+      // show the error message
+      const error = formField.querySelector('small');
+      error.textContent = message;
+}
+function form1validation(){
+
+const sumbmitForm1 = document.querySelector('#submit')
+const usernameEl = document.querySelector('#name');
+const emailEl = document.querySelector('#email');
+const passwordEl = document.querySelector('#password');
+const confirmPasswordEl = document.querySelector('#confirmPassword');
+
+// const form = document.querySelector('#signup');
+sumbmitForm1.addEventListener('click', validation)
+function validation(e){
+    // console.log(sumbmitForm1)
+      e.preventDefault();
+      function checkUsername(){
+        let valid =false;
+        const min =3;
+        const max =25;
+        // username value
+
+        const username = usernameEl.value.trim();
+        console.log(username)
+        if (!isRequired(username)) {
+            showError(usernameEl, 'Username cannot be blank.');
+        }
+        else if (!isBetween(username.length, min, max)) {
+            showError(usernameEl, 'Username must be between '+min+' and 25 characters.'+max)
+        } else {
+            showSuccess(usernameEl);
+            valid = true;3
+        }
+        return valid;
+
+
+      }
+      function checkEmail(){
+        let valid = false;
+        const email = emailEl.value.trim();
+        if (!isRequired(email)) {
+            showError(emailEl, 'Email cannot be blank.');
+        } else if (!isEmailValid(email)) {
+            showError(emailEl, 'Email is not valid.')
+        } else {
+            showSuccess(emailEl);
+            valid = true;
+        }
+        return valid;
+      }
+      function isPasswordSecure(password){
+        const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        return re.test(password);
+      }
+      function isEmailValid(email){
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
+      function checkPassword(){
+        let valid = false;
+
+
+        const password = passwordEl.value.trim();
+
+        if (!isRequired(password)) {
+            showError(passwordEl, 'Password cannot be blank.');
+        } else if (!isPasswordSecure(password)) {
+            showError(passwordEl, 'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+        } else {
+            showSuccess(passwordEl);
+            valid = true;
+        }
+
+        return valid;
+      }
+      function checkConfirmPassword(){
+        let valid = false;
+        // check confirm password
+        const confirmPassword = confirmPasswordEl.value.trim();
+        const password = passwordEl.value.trim();
+
+        if (!isRequired(confirmPassword)) {
+            showError(confirmPasswordEl, 'Please enter the password again');
+        } else if (password !== confirmPassword) {
+            showError(confirmPasswordEl, 'The password does not match');
+        } else {
+            showSuccess(confirmPasswordEl);
+            valid = true;
+        }
+
+        return valid;
+      }
+
+      checkConfirmPassword()
+      checkPassword();
+      checkUsername();
+      checkEmail()
+  }
+
+}
 
 function basicForm(){
   // elements created
@@ -367,12 +500,14 @@ function basicForm(){
   const fromRowLabel = document.createElement('label')
   const formRowInput = document.createElement('input')
   const fromRowName = document.createElement('span')
+  const fromRowMessage = document.createElement('small')
 
 
   const formRow2 = document.createElement('div')
   const fromRowLabel2 = document.createElement('label')
   const fromRowName2 = document.createElement('span')
   const formRowInput2 = document.createElement('input')
+  const fromRowMessage2 = document.createElement('small')
 
 
 
@@ -380,33 +515,39 @@ function basicForm(){
     const fromRowLabel21 = document.createElement('label')
     const fromRowName21 = document.createElement('span')
     const formRowInput21 = document.createElement('input')
+    const fromRowMessage21 = document.createElement('small')
 
 
     const formRow22 = document.createElement('div')
     const fromRowLabel22 = document.createElement('label')
     const fromRowName22 = document.createElement('span')
     const formRowInput22 = document.createElement('input')
+    const fromRowMessage22 = document.createElement('small')
 
 
     const formRow23 = document.createElement('div')
     const fromRowLabel23 = document.createElement('label')
     const fromRowName23 = document.createElement('span')
     const formRowInput23 = document.createElement('input')
+    const fromRowMessage23 = document.createElement('small')
 
   const formRow3 = document.createElement('div')
   const fromRowLabel3 = document.createElement('label')
   const fromRowName3 = document.createElement('span')
   const formRowInput3 = document.createElement('select')
+  const fromRowMessage3 = document.createElement('small')
 
   const formRow4 = document.createElement('div')
   const fromRowLabel4 = document.createElement('label')
   const fromRowName4 = document.createElement('span')
   const formRowInput4 = document.createElement('textarea')
+  const fromRowMessage4 = document.createElement('small')
 
 
   const formRow5 = document.createElement('div')
   const fromRowLabel5 = document.createElement('label')
   const fromRowName5 = document.createElement('span')
+  const fromRowMessage5 = document.createElement('small')
   const radioButtonDiv=document.createElement('div')
   const radioButtonDivIner = document.createElement('div')
   const radioButtonDivLabel = document.createElement('label')
@@ -454,57 +595,65 @@ function basicForm(){
   fromRowName2.innerText = database.formRowName2
   formRowInput2.type = 'email'
   formRowInput2.name = 'email'
+  formRowInput2.id = 'email'
 
   formRow21.classList.add('form-row')
   fromRowName21.innerText = database.formRowName21
   formRowInput21.type = 'number'
+  formRowInput21.id = 'number'
 
   formRow22.classList.add('form-row')
   fromRowName22.innerText = database.formRowName22
   formRowInput22.type = 'password'
+  formRowInput22.id = 'password'
 
   formRow23.classList.add('form-row')
   fromRowName23.innerText = database.formRowName23
   formRowInput23.type = 'password'
+  formRowInput23.id = 'confirmPassword'
 
 
   formRow3.classList.add('form-row')
   fromRowName3.innerText = database.formRowName3
   formRowInput3.name = 'dropdown'
+  formRowInput3.id = 'dropdown'
 
 
 
 
   formRow4.classList.add('form-row')
   fromRowName4.innerText = database.formRowName4
-
   formRowInput4.name = 'textarea'
+  formRowInput4.id = 'textarea'
 
   formRow5.classList.add('form-row')
   fromRowName5.innerText = database.formRowName5
   radioButtonDiv.classList.add('form-radio-buttons')
   radioButtonDivInput.type = 'radio'
   radioButtonDivInput.name = 'radio'
+  radioButtonDivInput.id = 'radio'
   radioButtonDivSpan.innerText = database.radio[0];
 
 
 
   radioButtonDivInput2.type = 'radio'
-  radioButtonDivInput2.name = 'radio'
+  radioButtonDivInput2.name = 'radio1'
+  radioButtonDivInput2.id = 'radio1'
   radioButtonDivSpan2.innerText = database.radio[1];
 
 
 
   radioButtonDivInput3.type = 'radio'
-  radioButtonDivInput3.name = 'radio'
+  radioButtonDivInput3.name = 'radio2'
+  radioButtonDivInput3.id = 'radio2'
   radioButtonDivSpan3.innerText = database.radio[2];
 
 
   formRow6.classList.add('form-row')
   formRowButton6.type = 'submit'
   formRowButton6.id="submit"
-  formRowButton6.name="submit"
-  formRowButton6.value="Submit"
+  // formRowButton6.name="submit"
+  // formRowButton6.value="Submit"
   formRowButton6.innerText = database.submitButton
 
 
@@ -521,11 +670,14 @@ function basicForm(){
   formRow.appendChild(fromRowLabel)
   fromRowLabel.appendChild(fromRowName)
   fromRowLabel.appendChild(formRowInput)
+  fromRowLabel.appendChild(fromRowMessage)
+
 
   forms.appendChild(formRow2)
   formRow2.appendChild(fromRowLabel2)
   fromRowLabel2.appendChild(fromRowName2)
   fromRowLabel2.appendChild(formRowInput2)
+  fromRowLabel2.appendChild(fromRowMessage2)
 
 
 
@@ -539,33 +691,39 @@ function basicForm(){
   test.innerText=database.formRowInput3[i].name
   formRowInput3.appendChild(test)
   }
+  fromRowLabel3.appendChild(fromRowMessage3)
 
 
   forms.appendChild(formRow21)
   formRow21.appendChild(fromRowLabel21)
   fromRowLabel21.appendChild(fromRowName21)
   fromRowLabel21.appendChild(formRowInput21)
+  fromRowLabel21.appendChild(fromRowMessage21)
 
   forms.appendChild(formRow22)
   formRow22.appendChild(fromRowLabel22)
   fromRowLabel22.appendChild(fromRowName22)
   fromRowLabel22.appendChild(formRowInput22)
+  fromRowLabel22.appendChild(fromRowMessage22)
 
   forms.appendChild(formRow23)
   formRow23.appendChild(fromRowLabel23)
   fromRowLabel23.appendChild(fromRowName23)
   fromRowLabel23.appendChild(formRowInput23)
+  fromRowLabel23.appendChild(fromRowMessage23)
 
 
   forms.appendChild(formRow4)
   formRow4.appendChild(fromRowLabel4)
   fromRowLabel4.appendChild(fromRowName4)
   fromRowLabel4.appendChild(formRowInput4)
+  fromRowLabel4.appendChild(fromRowMessage4)
 
 
   forms.appendChild(formRow5)
   formRow5.appendChild(fromRowLabel5)
   fromRowLabel5.appendChild(fromRowName5)
+  fromRowLabel5.appendChild(fromRowMessage5)
   formRow5.appendChild(radioButtonDiv)
   radioButtonDiv.appendChild(radioButtonDivIner)
   radioButtonDivIner.appendChild(radioButtonDivLabel)
@@ -585,27 +743,26 @@ function basicForm(){
 
   forms.appendChild(formRow6)
   formRow6.appendChild(formRowButton6)
+
+  form1validation()
 }
 
 function switchForms(){
+  // event listnters
   const monintor = document.querySelector('ul')
   monintor.addEventListener('click', doSomething)
+
+
 
   function doSomething(event){
     let option = event.target
 
     if(option.classList[0]==='class0'){
-
-
-
-
       for(let i=0;i<option.parentNode.parentNode.children.length;i++){
         option.parentNode.parentNode.children[i].children[0].classList.remove('active')
       }
       const active = document.querySelector('.class0')
       active.classList.add('active')
-
-
       basicForm()
     }else
     if(option.classList[0]==='class1'){
@@ -685,28 +842,21 @@ function switchForms(){
       const active = document.querySelector('.class6')
       active.classList.add('active')
 
-    
+
 
     }
   }
 }
-// function validateForm(){
-//   // Set error catcher
-// var error = 0;
-// // Check name
-// if(!validateName(‘name’)){
-// document.getElementById(‘nameError’).style.display = "block";
-// error++;
-// }
-// }
-function validateName(x){
- alert(document.getElementById(x).value);
- }
+
+
+
 
 
 function run(){
   pageLoading()
   switchForms()
 }
+
+
 
 run()

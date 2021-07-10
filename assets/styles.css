@@ -76,7 +76,15 @@ ul li a.active{
     background-color: #F05283;
     pointer-events: none;
 }
+button{
+  cursor: pointer;
 
+}
+button:hover{
+  background-color: blue;
+  opacity: 0.7
+
+}
 ul li a:hover {
     opacity: 1;
     background-color: #F05283;
@@ -294,4 +302,12 @@ ul li{
      }
 
  }
+
+ .success{
+   color: green;
+ }
+ .error{
+   color: red;
+ }
+
 /* =========================end of form basic css========================== */
