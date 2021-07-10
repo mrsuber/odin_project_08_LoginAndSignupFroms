@@ -1,6 +1,6 @@
 let database  ={
   page_title:'Basic Form',
-  header_title:'Welcome to the form generation and manupulation using javascript',
+  header_title:'Welcome to the form generation and manupulation using javascript, Odin Assignment 8',
   download_button:'Download',
   header2_links:['Basic','Register','Login','Mini','Lables on Top','validation','Search'],
   form1TitleHeading:'Odin Form Example',
