@@ -310,4 +310,10 @@ ul li{
    color: red;
  }
 
+ small{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
 /* =========================end of form basic css========================== */
